@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     leftClick(cell);
                     // cell.
                     // cell.classList.
+                    // cell.classList.remo
                 })
             }
         }
@@ -78,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let mines = cell.getAttribute('data');
         if(mines != 0)
         {
-            cell.innerHTML = mines;  
+            cell.classList.add('open');
+            // cell.innerHTML = mines;  
             return ;
         }
         for(let k=0; k<8; k++)
@@ -95,10 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function rightClick(event, cell)
     {
         event.preventDefault();
-        if(isGameOver) return
-        if(cell.classList.contains('checkked'))
-            return ;
-        cell.classList.add('flag');
+        if(isGameOver || cell.classList.contains("checked")) return
+        if(cell.classList.contains('flag'))
+            cell.classList.remove('flag');
+        else
+            cell.classList.add('flag');
     }
 
     function leftClick(cell)
