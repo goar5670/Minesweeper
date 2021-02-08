@@ -79,8 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let mines = cell.getAttribute('data');
         if(mines != 0)
         {
-            cell.classList.add('open');
-            // cell.innerHTML = mines;  
+            cell.classList.add(`${"open"+cell.getAttribute('data')}`);  
             return ;
         }
         for(let k=0; k<8; k++)
@@ -106,13 +105,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function leftClick(cell)
     {
-        if(isGameOver) return
+        let id = cell.getAttribute('id');
+        let x = Math.floor(id/10);
+        let y = id%10;
+        if(isGameOver || cell.classList.contains('flag')) return
         if(cell.classList.contains('mine'))
+        {
             console.log("Game Over"), isGameOver = 1;
+            cell.classList.add('mine_self');
+            for(let i=0; i<width; i++)
+            {
+                for(let j=0; j<width; j++)
+                {
+                    let id = i*width + j;
+                    if(id == cell.getAttribute('id'))
+                        continue;
+                    let C = document.getElementById(id);
+                    if(C.classList.contains('flag') || 
+                        C.classList.contains('checked'))
+                        continue;
+                    if(C.classList.contains('mine'))
+                        C.classList.add("mine_others");
+                }
+            }
+        }
+        else if(cell.classList.contains('checked'))
+        {
+            let flags = 0;
+            for(let k=0; k<8; k++)
+            {
+                let nx = x + di[k];
+                let ny = y + dj[k];
+                if(!inBounds(nx, ny))
+                    continue;
+                let adjacentCell = document.getElementById(`${nx*width + ny}`);
+                if(adjacentCell.classList.contains('checked'))
+                    continue;
+                else if(adjacentCell.classList.contains('flag'))
+                    flags++;
+            }
+            if(flags == cells[x][y])
+            {
+                for(let k=0; k<8; k++)
+                {
+                    let nx = x + di[k];
+                    let ny = y + dj[k];
+                    if(!inBounds(nx, ny))
+                        continue;
+                    let adjacentCell = document.getElementById(`${nx*width + ny}`);
+                    if(adjacentCell.classList.contains('checked') || 
+                        adjacentCell.classList.contains('flag'))
+                        continue;
+                    leftClick(adjacentCell);
+                }
+            }
+        }
         else
         {
-            let id = cell.getAttribute('id');
-            BFS(Math.floor(id/10), id%10);
+            BFS(x, y);
         }
     }
 

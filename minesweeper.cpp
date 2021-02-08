@@ -43,13 +43,7 @@ vector<vector<int>> generateGrid(int height, int width, int number_of_mines)
 
 void solveManually(vector<vector<int>> grid)
 {
-	int height = grid.size();
-	int width = grid[0].size();
-	int cnt = 0;
-	while(true)
-	{
-
-	}
+	
 }
 
 int main()

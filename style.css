@@ -13,37 +13,82 @@
 
 .grid .cell {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 1px 1px;
-    background-color: #7a7a7a;
+    margin: 3px 3px;
+    background-color: #7d7d7d;
     color: black;
     text-align: center;
-    line-height: 38px;
-    width: 38px;
-    height: 38px;
+    line-height: 34px;
+    width: 34px;
+    height: 34px;
     border: 0px;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     /* padding: 0; */
 }
 
-.grid .open {
-    background-image: url(https://cdn.picpng.com/1/shape-1-35325.png);
+.grid .open1 {
+    background-image: url("https://i.ibb.co/WcNVRCX/open1.png");
+}
+
+.grid .open2 {
+    background-image: url("https://i.ibb.co/GPgn13z/open2.png");
+}
+
+.grid .open3 {
+    background-image: url("https://i.ibb.co/PwyR41W/open3.png");
+}
+
+.grid .open4 {
+    background-image: url("https://i.ibb.co/dkDgXqL/open4.png");
+}
+
+.grid .open5 {
+    background-image: url("https://i.ibb.co/FKWzbs9/open5.png");
+}
+
+.grid .open6 {
+    background-image: url("https://i.ibb.co/sVTZnpw/open6.png");
+}
+
+.grid .open7 {
+    background-image: url("https://i.ibb.co/Dgb86ZF/open7.png");
+}
+
+.grid .open8 {
+    background-image: url("https://i.ibb.co/xC72pz3/open8.png");
+}
+
+/* .grid .open {
     width: 38px;
     height: 38px;
-}
+} */
 
 /* 
 .grid .cell:hover {
     background-color: ;
 } */
 
-.grid .checked {
-    background-color: #bdbdbd;
-}
-
 .grid .mine {
     /* background-color: orange; */
 }
 
+.grid .checked {
+    /* background-image: url("https://cdn.picpng.com/1/shape-1-35325.png");
+    background-size: cover; */
+    background-size: cover;
+    background-color: #c9c9c9;
+}
+
+.grid .mine_self {
+    background-image: url("https://i.ibb.co/PtMw9MP/mine-self.png");
+    background-size: cover;
+}   
+
+.grid .mine_others {
+    background-size: cover;
+    background-image: url("https://i.ibb.co/23YLxnc/mine-others.png");
+}
+
 .grid .flag {
-    background-color: orange;
+    background-image: url("https://i.ibb.co/BV4FKPp/flag.png");
+    background-size: cover;
 }
