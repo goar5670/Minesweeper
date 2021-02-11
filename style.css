@@ -1,28 +1,125 @@
 
+body {
+    margin: 0px;
+    /* width: 100vh; */
+}
+
+.header {
+    /* width: fit-content; */
+    width: 95vh;
+    margin: auto;
+    height: 20px;
+    background-color: #3f5b91;
+    border: 1px solid;
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    margin-bottom: 40px;
+    padding: 10px;
+}
+
+.header .content {
+    width: fit-content;
+    margin: auto;
+}
+
+.header button {
+    color: white;
+    background: none;
+    height: 20px;
+    border: none;
+    border-radius: 0.1rem;
+    margin: 0px 20px;
+    outline: none;
+}
+
+.header button:hover {
+    color: #43d998;
+    cursor:pointer
+}
 
 .grid {
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: #e6e6e6;
-    width: 400px;
-    height: 400px;
     border: 1px solid;
     border-radius: 0.2rem;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
+    
+    /* width: 352px; */
 }
+
+.grid-16x16 {
+    width: 352px;
+}
+
+.grid-16x30 {
+    width: 660px;
+}
+
+.grid-8x8 {
+    width: 352px;
+}
+
+.cell-16x16 {
+    width: 20px;
+    height: 20px;
+}
+
+.cell-16x30 {
+    width: 20px;
+    height: 20px;
+}
+
+.cell-8x8 {
+    width: 42px;
+    height: 42px;
+}
+
 
 .grid .cell {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 3px 3px;
+    margin: 1px 1px;
     background-color: #7d7d7d;
-    color: black;
-    text-align: center;
-    line-height: 34px;
-    width: 34px;
-    height: 34px;
-    border: 0px;
     border-radius: 0.2rem;
-    /* padding: 0; */
+}
+
+.grid .grid-header .container {
+    width: fit-content;
+    display: flex;
+    margin: auto;
+}
+
+.grid .grid-header {
+    border-radius: 0.2rem;
+    width: 100vh;
+    margin: 10px 3px 20px;
+    display: flex;
+}
+
+.grid .grid-header button {
+    margin: auto;
+    height: 30px;
+    
+}
+
+.grid .grid-header .flag-count {
+    height: 50px;
+    width: 50px;
+    margin: 0px 5px 5px 10px;
+}
+
+.grid .grid-header span {
+    margin: 15px 5px 15px 10px;
+    font-size: 1.2rem;
+}
+
+.grid .grid-header .timer-icon {
+    height: 50px;
+    width: 50px;
+    margin: 0px 5px 5px 10px;
+
 }
 
 .grid .open1 {
@@ -89,6 +186,6 @@
 }
 
 .grid .flag {
-    background-image: url("https://i.ibb.co/BV4FKPp/flag.png");
+    background-image: url("https://i.ibb.co/nrwY811/flag.png");
     background-size: cover;
 }
