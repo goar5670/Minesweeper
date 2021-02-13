@@ -27,27 +27,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    function populateGrid(cells)
+    function populateGrid(X, Y)
     {
         let cnt = 0;
         while(cnt < mineAmount)
         {
             const x = Math.floor(Math.random() * height);
             const y = Math.floor(Math.random() * width);
-            if(cells[x][y] != -1)
+            let flag = (x == X && y == Y);
+            for(let k=0; k<8; k++)
             {
-                cnt++;
-                cells[x][y] = -1;5
-                for(let k=0; k<8; k++)
+                let nx = x + di[k];
+                let ny = y + dj[k];
+                if(inBounds(nx, ny) && nx == X && ny == Y)
+                    flag = 1;   
+            }
+
+            if(flag || cells[x][y] == -1)
+                continue;
+        
+            cnt++;
+            cells[x][y] = -1;5
+            for(let k=0; k<8; k++)
+            {
+                let nx = x + di[k];
+                let ny = y + dj[k];
+                if(inBounds(nx, ny) && cells[nx][ny] != -1)
                 {
-                    let nx = x + di[k];
-                    let ny = y + dj[k];
-                    if(inBounds(nx, ny) && cells[nx][ny] != -1)
-                    {
-                        cells[nx][ny]++;
-                    }
+                    cells[nx][ny]++;
                 }
             }
+        }
+        for(let i=0; i<width*height; i++)
+        {
+            const cell = document.getElementById(i);
+            let x = Math.floor(i/width);
+            let y = i%width;
+            if(cells[x][y] == -1)
+                cell.classList.add('mine');
+            else
+                cell.setAttribute('data', cells[x][y]);
         }
     }
     
@@ -67,21 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createGrid()
     {
-        console.log(height, width);
         document.getElementById('flag-count').innerHTML = `00/${mineAmount}`
         cells = Array.from(Array(height), () => new Array(width).fill(0));
-        console.log(cells);
-        populateGrid(cells);
         for(let i=0; i<height; i++)
         {
             for(let j=0; j<width; j++)
             {
                 const cell = document.createElement('div'); 
                 cell.setAttribute('id', i*width+j);
-                if(cells[i][j] == -1)
-                    cell.classList.add('mine');
-                else
-                    cell.setAttribute("data", cells[i][j]);
                 cell.classList.add('cell');
                 cell.classList.add(`cell-${height}x${width}`);
                 grid.appendChild(cell);
@@ -99,27 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
     createGrid();
     grid.classList.add(`grid-${selectedSize}`);
 
-    //Util functions
-
-    // function removeSizeClass()
-    // {
-    //     for(let i=0; i<width*height; i++)
-    //     {
-    //         const cell = document.getElementById(i);
-    //         cell.classList.remove(`cell-${selectedSize}`);
-    //     }
-    //     grid.classList.remove(`grid-${selectedSize}`);
-    // }
-
-    // function addSizeClass()
-    // {
-    //     for(let i=0; i<width*height; i++)
-    //     {
-    //         const cell = document.getElementById(i);
-    //         cell.classList.add(`cell-${selectedSize}`);
-    //     }
-    //     grid.classList.add(`grid-${selectedSize}`);
-    // }
     
     function BFS(x, y)
     {
@@ -279,6 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             if(!started)
             {
+                populateGrid(x, y);
                 started = 1;
                 startTime = new Date().getTime();
                 startTimer();
